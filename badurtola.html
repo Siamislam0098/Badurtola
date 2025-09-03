@@ -86,12 +86,16 @@
         .light-theme .text-white {
             color: black;
         }
-
+        
+        /* New class to ensure text is always white */
+        .text-fixed-white {
+            color: #ffffff !important;
+        }
+        
         /* Custom Scrollbar for a sleek look */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
-            /* For horizontal scrollbar */
         }
 
         ::-webkit-scrollbar-track {
@@ -99,14 +103,14 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #07963e;
+            background: #02ac48;
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: #6b7280;
         }
-
+        
         /* Hero Section */
         .hero-section {
             position: relative;
@@ -144,62 +148,6 @@
             z-index: -1;
         }
 
-        /* Parallax Section with fixed background */
-        .parallax-section {
-            background-image: url('middle.jpg');
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 50vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-        }
-
-        /* Modal/Lightbox Styles */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .modal.is-visible {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1-px rgba(0, 0, 0, 0.06);
-            object-fit: contain;
-        }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: transparent;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
         /* Full-screen Menu Overlay */
         #full-screen-menu {
             position: fixed;
@@ -216,6 +164,10 @@
             transform: translateX(100%);
             transition: transform 0.5s ease-in-out;
             overflow-y: auto;
+        }
+        
+        .light-theme #full-screen-menu {
+            background-color: #d1d5db;
         }
 
         #full-screen-menu.open {
@@ -244,7 +196,7 @@
             transition: transform 0.3s ease-in-out;
             z-index: 91;
         }
-
+        
         #menu-close-btn:hover {
             transform: rotate(90deg);
         }
@@ -252,27 +204,6 @@
         /* Hamburger Button */
         #hamburger-btn {
             z-index: 91;
-            /* Ensure it's on top of everything except the menu close button */
-        }
-
-        /* Toast Notification */
-        #toast-notification {
-            position: fixed;
-            bottom: -100px;
-            /* Start off-screen */
-            right: 20px;
-            background-color: #1f2937;
-            color: #d1d5db;
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            transition: bottom 0.5s cubic-bezier(0.2, 0.5, 0.4, 1);
-        }
-
-        #toast-notification.show {
-            bottom: 20px;
-            /* Slide in */
         }
 
         /* Community Showcase - Auto-Scrolling Gallery */
@@ -285,9 +216,8 @@
         .showcase-track {
             display: flex;
             animation: scroll-left 40s linear infinite;
-            /* Adjust time for speed */
         }
-
+        
         /* Pause on hover */
         .showcase-track:hover {
             animation-play-state: paused;
@@ -296,19 +226,18 @@
         .showcase-item {
             flex-shrink: 0;
             width: 300px;
-            /* Adjust item width as needed */
             margin-right: 1.5rem;
-            /* Gap between items */
             border-radius: 1rem;
             overflow: hidden;
         }
-
+        
         .showcase-item img {
             width: 100%;
             height: auto;
             object-fit: cover;
             border-radius: 1rem;
             transition: transform 0.2s ease-in-out;
+            cursor: pointer;
         }
 
         .showcase-item img:hover {
@@ -320,22 +249,17 @@
             from {
                 transform: translateX(0);
             }
-
             to {
                 transform: translateX(calc(-315px * 6));
-                /* (item width + margin) * number of items */
             }
         }
-
-        /* --- Social Icon Styles (from uiverse.io) --- */
-        /* This is the new CSS from the user's request, adapted for horizontal layout */
+        
+        /* Social Icon Styles */
         .social-icons-list {
             list-style: none;
             display: flex;
             justify-content: center;
-            /* Center the icons horizontally */
             gap: 1rem;
-            /* Spacing between icons */
         }
 
         .icon-content {
@@ -343,13 +267,10 @@
         }
 
         .icon-content .tooltip {
-            /* CORRECTED: Positioned correctly above the icon */
             position: absolute;
             bottom: 120%;
-            /* Pushes it above the icon */
             left: 50%;
             transform: translateX(-50%);
-            /* Corrected for proper centering */
             color: #fff;
             padding: 6px 10px;
             border-radius: 15px;
@@ -358,9 +279,7 @@
             font-size: 14px;
             transition: all 0.3s ease;
             white-space: nowrap;
-            /* Prevent tooltip text from wrapping */
             z-index: 10;
-            /* Ensures the tooltip is on top */
         }
 
         .icon-content:hover .tooltip {
@@ -411,19 +330,20 @@
         .icon-content a:hover .filled {
             height: 100%;
         }
-
-        /* Custom colors for Facebook and Discord */
+        
+        /* Custom colors for social icons */
         .icon-content a[data-social="facebook"] .filled,
-        .icon-content a[data-social="facebook"]~.tooltip {
+        .icon-content a[data-social="facebook"] ~ .tooltip {
             background-color: #1877f2;
         }
-
+        
         .icon-content a[data-social="discord"] .filled,
-        .icon-content a[data-social="discord"]~.tooltip {
+        .icon-content a[data-social="discord"] ~ .tooltip {
             background-color: #5865f2;
         }
+
         /* Scroll to Top Button */
-         #scroll-to-top {
+        #scroll-to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -449,7 +369,6 @@
             background-color: #9ca3af;
         }
 
-        /* Theme Toggle Button */
         .switch {
             font-size: 17px;
             position: relative;
@@ -563,6 +482,56 @@
             z-index: 49;
             transition: width 0.1s ease-out;
         }
+
+        /* Styles for the new image modal (lightbox) */
+        .modal {
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.is-active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 1rem;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .modal-close-btn:hover,
+        .modal-close-btn:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 
@@ -630,20 +599,16 @@
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">Badurtola
                     HighComission</span>
             </h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-8 drop-shadow-md">
+            <p class="text-xl md:text-2xl text-fixed-white mb-8 drop-shadow-md">
                 A Minecraft server built on community, creativity, and adventure.
             </p>
             <div class="relative group">
-                <button id="join-btn"
-                    class="relative group overflow-hidden px-8 py-3 bg-emerald-500 hover:bg-emerald-600 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <div class="relative group">
+                <a href="https://discord.gg/qRPzuHSjHc" target="_blank" rel="noopener noreferrer" class="relative group overflow-hidden px-8 py-3 bg-emerald-500 hover:bg-emerald-600 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg inline-block">
                     <span class="relative z-10 text-white font-bold">JOIN SERVER</span>
-                    <span
-                        class="absolute top-1/2 left-1/2 w-48 h-48 bg-white opacity-0 group-hover:opacity-10 transition-all duration-500 -translate-x-1/2 -translate-y-1/2 rounded-full"></span>
-                </button>
-                <span id="ip-tooltip"
-                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1 bg-gray-700 text-white text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    minecraft.nafisulbari.com
-                </span>
+                    <span class="absolute top-1/2 left-1/2 w-48 h-48 bg-white opacity-0 group-hover:opacity-10 transition-all duration-500 -translate-x-1/2 -translate-y-1/2 rounded-full"></span>
+                </a>
+            </div>
             </div>
         </div>
     </div>
@@ -715,15 +680,12 @@
                 <!-- Feature 5: Few Plugins -->
                 <div class="bg-gray-800 p-8 rounded-xl shadow-lg duration-300">
                     <div class="mb-4">
-                        <svg class="h-16 w-16 text-emerald-400 mx-auto" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 4c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM12 18a6 6 0 100-12 6 6 0 000 12zM12 15a3 3 0 100-6 3 3 0 000 6z" />
+                        <svg class="h-16 w-16 text-emerald-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM12 18a6 6 0 100-12 6 6 0 000 12zM12 15a3 3 0 100-6 3 3 0 000 6z" />
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2">Few Plugins</h3>
-                    <p class="text-gray-400">Only using Grief Prevention and Jails+ to protect myself from being
-                        trolled!</p>
+                    <p class="text-gray-400">Only using <a href="https://www.spigotmc.org/resources/griefprevention.1884/" target="_blank" class="text-blue-400 hover:text-blue-500 underline transition-colors duration-200">Grief Prevention</a> and <a href="https://www.spigotmc.org/resources/%E2%9C%A6-jails-secure-prison-system-escape-detections-punishment-system-easy-setup.124623/" target="_blank" class="text-blue-400 hover:text-blue-500 underline transition-colors duration-200">Jails+</a> to protect myself from being trolled!</p>
                 </div>
 
                 <!-- Feature 6: Fighter Jet -->
@@ -742,14 +704,6 @@
             </div>
         </section>
 
-        <!-- Fixed Parallax Section -->
-        <section class="parallax-section my-16 reveal-element">
-            <div class="p-6 md:p-12 bg-gray-900/70 rounded-xl shadow-xl backdrop-blur-sm">
-                <h3 class="text-2xl md:text-4xl font-bold text-white tracking-wide">Join our adventure!</h3>
-                <p class="text-sm md:text-lg text-gray-300 mt-2">Discover a world full of possibilities.</p>
-            </div>
-        </section>
-
         <!-- Community Showcase Section with Auto-Scrolling -->
         <section id="showcase-section" class="py-12 reveal-element">
             <div class="container mx-auto text-center mb-12">
@@ -761,138 +715,137 @@
                 <div class="showcase-track">
                     <!-- Duplicate items for a seamless infinite loop -->
                     <div class="showcase-item">
-                        <img src="1.png" alt="Minecraft server build">
+                        <img src="1.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="2.png" alt="Pixel art creation">
+                        <img src="2.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="3.png" alt="Event highlights">
+                        <img src="3.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="4.png" alt="Event highlights">
+                        <img src="4.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="5.png" alt="Event highlights">
+                        <img src="5.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="6.png" alt="Event highlights">
+                        <img src="6.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="1.png" alt="Minecraft server build">
+                        <img src="1.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="2.png" alt="Pixel art creation">
+                        <img src="2.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="3.png" alt="Event highlights">
+                        <img src="3.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="4.png" alt="Event highlights">
+                        <img src="4.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="5.png" alt="Event highlights">
+                        <img src="5.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="6.png" alt="Event highlights">
+                        <img src="6.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="1.png" alt="Minecraft server build">
+                        <img src="1.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="2.png" alt="Pixel art creation">
+                        <img src="2.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="3.png" alt="Event highlights">
+                        <img src="3.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="4.png" alt="Event highlights">
+                        <img src="4.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="5.png" alt="Event highlights">
+                        <img src="5.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="6.png" alt="Event highlights">
+                        <img src="6.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="1.png" alt="Minecraft server build">
+                        <img src="1.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="2.png" alt="Pixel art creation">
+                        <img src="2.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="3.png" alt="Event highlights">
+                        <img src="3.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="4.png" alt="Event highlights">
+                        <img src="4.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="5.png" alt="Event highlights">
+                        <img src="5.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="6.png" alt="Event highlights">
+                        <img src="6.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="1.png" alt="Minecraft server build">
+                        <img src="1.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="2.png" alt="Pixel art creation">
+                        <img src="2.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="3.png" alt="Event highlights">
+                        <img src="3.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="4.png" alt="Event highlights">
+                        <img src="4.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="5.png" alt="Event highlights">
+                        <img src="5.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="6.png" alt="Event highlights">
+                        <img src="6.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="1.png" alt="Minecraft server build">
+                        <img src="1.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="2.png" alt="Pixel art creation">
+                        <img src="2.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="3.png" alt="Event highlights">
+                        <img src="3.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="4.png" alt="Event highlights">
+                        <img src="4.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="5.png" alt="Event highlights">
+                        <img src="5.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="6.png" alt="Event highlights">
+                        <img src="6.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="1.png" alt="Minecraft server build">
+                        <img src="1.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="2.png" alt="Pixel art creation">
+                        <img src="2.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="3.png" alt="Event highlights">
+                        <img src="3.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="4.png" alt="Event highlights">
+                        <img src="4.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="5.png" alt="Event highlights">
+                        <img src="5.png" alt="">
                     </div>
                     <div class="showcase-item">
-                        <img src="6.png" alt="Event highlights">
+                        <img src="6.png" alt="">
                     </div>
-
                 </div>
             </div>
         </section>
 
         <!-- New Section: Server Highlights with Transparent, Alternating Blocks -->
-        <section id="highlights-section" class="py-12 reveal-element">
+        <sectio-section" class="py-12 reveal-element">
             <div class="container mx-auto text-center mb-12">
                 <h2 class="text-4xl font-bold text-gray-100">GAMEMODES</h2>
                 <p class="text-gray-400 mt-2">Stuff and things you can do on our server</p>
@@ -1025,13 +978,8 @@
 
     <!-- Image Modal/Lightbox -->
     <div id="image-modal" class="modal">
-        <button id="modal-close-btn" class="modal-close-btn">&times;</button>
-        <img id="modal-image" src="" alt="Full size gallery image" class="modal-content">
-    </div>
-
-    <!-- Toast Notification Element -->
-    <div id="toast-notification">
-        IP copied! See you in the server.
+        <span class="modal-close-btn">&times;</span>
+        <img class="modal-content" id="modal-image">
     </div>
 
     <!-- Footer -->
@@ -1089,14 +1037,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const mainHeader = document.getElementById('main-header');
-            const joinBtn = document.getElementById('join-btn');
-            const toastNotification = document.getElementById('toast-notification');
-            let hideToastTimeout;
             
             const imageModal = document.getElementById('image-modal');
             const modalImage = document.getElementById('modal-image');
-            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalCloseBtn = document.querySelector('.modal-close-btn');
             
+            const showcaseImages = document.querySelectorAll('.showcase-item img');
+
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const fullScreenMenu = document.getElementById('full-screen-menu');
             const menuCloseBtn = document.getElementById('menu-close-btn');
@@ -1209,26 +1156,31 @@
             menuLinks.forEach(link => {
                 link.addEventListener('click', closeMenu);
             });
-            
-            // Copy server IP to clipboard and show toast notification
-            const serverIp = "minecraft.nafisulbari.com";
-            joinBtn.addEventListener('click', () => {
-                const tempInput = document.createElement('input');
-                tempInput.value = serverIp;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-                
-                // Show the toast notification
-                clearTimeout(hideToastTimeout);
-                toastNotification.classList.add('show');
-                
-                // Hide the toast after 3 seconds
-                hideToastTimeout = setTimeout(() => {
-                    toastNotification.classList.remove('show');
-                }, 3000);
+
+            // --- New Image Modal Functionality ---
+            // Open the modal when a showcase image is clicked
+            showcaseImages.forEach(img => {
+                img.addEventListener('click', (event) => {
+                    modalImage.src = event.target.src;
+                    imageModal.classList.add('is-active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                });
             });
+
+            // Close the modal when the close button is clicked
+            modalCloseBtn.addEventListener('click', () => {
+                imageModal.classList.remove('is-active');
+                document.body.style.overflow = ''; // Restore background scrolling
+            });
+
+            // Close the modal when clicking outside the image
+            imageModal.addEventListener('click', (event) => {
+                if (event.target === imageModal) {
+                    imageModal.classList.remove('is-active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
         });
     </script>
 </body>
